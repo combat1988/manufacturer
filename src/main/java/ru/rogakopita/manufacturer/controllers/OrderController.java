@@ -16,21 +16,19 @@ import ru.rogakopita.manufacturer.service.OrderService;
 @RestController
 @RequestMapping(value = "/order")
 public class OrderController extends AbstractCRUDController<Order> {
-	
-	@Autowired
-	OrderService orderService;
-	
-	@Autowired
-	public OrderController(OrderDAO dao) {
-		this.dao = dao;
-	}
-	
-	@RequestMapping(value="id", method=RequestMethod.GET)
-	public @ResponseBody String timeToTerm(@PathVariable long id) {
-		Map<String, Long> dateTimeToTerm = orderService.timeToTerm(id);
-		return "Оталось " + dateTimeToTerm.get("day") + "дней и часов "+dateTimeToTerm.get("hour")+" до окончания заказа ";
-	}
-	
 
-	
+    @Autowired
+    OrderService orderService;
+
+    @Autowired
+    public OrderController(OrderDAO dao) {
+        this.dao = dao;
+    }
+
+    @RequestMapping(value = "{id}/timeToTerm", method = RequestMethod.GET)
+    public @ResponseBody String timeToTerm(@PathVariable long id) {
+        Map<String, Long> dateTimeToTerm = orderService.timeToTerm(id);
+        return "Оталось " + dateTimeToTerm.get("day") + "дней и часов " + dateTimeToTerm.get("hour") + " до окончания заказа ";
+    }
+
 }
