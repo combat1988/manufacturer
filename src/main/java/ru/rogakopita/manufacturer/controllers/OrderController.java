@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ru.rogakopita.manufacturer.dao.OrderDAO;
 import ru.rogakopita.manufacturer.domain.Order;
-import ru.rogakopita.manufacturer.repository.OrderService;
+import ru.rogakopita.manufacturer.service.OrderService;
 
 @RestController
 @RequestMapping(value = "/order")

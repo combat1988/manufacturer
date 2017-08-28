@@ -14,7 +14,7 @@ import ru.rogakopita.manufacturer.dao.DepartmentDAO;
 import ru.rogakopita.manufacturer.domain.Department;
 import ru.rogakopita.manufacturer.domain.Employee;
 import ru.rogakopita.manufacturer.domain.Order;
-import ru.rogakopita.manufacturer.repository.DepartmentService;
+import ru.rogakopita.manufacturer.service.DepartmentService;
 
 @RestController
 @RequestMapping(value = "/department")

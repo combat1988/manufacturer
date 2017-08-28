@@ -2,6 +2,7 @@ package ru.rogakopita.manufacturer.controllers;
 
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.rogakopita.manufacturer.dao.EmployeeDAO;
 import ru.rogakopita.manufacturer.domain.Employee;
 import ru.rogakopita.manufacturer.domain.Order;
-import ru.rogakopita.manufacturer.repository.EmployeeService;
+import ru.rogakopita.manufacturer.service.EmployeeService;
 
 @RestController
 @RequestMapping(value = "/employee")
