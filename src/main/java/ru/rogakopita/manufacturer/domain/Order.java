@@ -3,7 +3,6 @@ package ru.rogakopita.manufacturer.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,76 +11,73 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import ru.rogakopita.manufacturer.domain.ifc.DTOIfc;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import ru.rogakopita.manufacturer.domain.ifc.DTOIfc;
-
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "orders")
-public class Order implements DTOIfc,Serializable {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column
-	@JsonFormat
-    (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-	private Date createDate;
-	
+public class Order implements DTOIfc, Serializable {
 
-	@Column
-	@JsonFormat
-    (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-	private Date termTime;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	@ManyToOne
-	private Furniture furniture;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Employee producer;
-	
-	@Override
-	public long getId() {
-		return id;
-	}
+    @Column
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private Date createDate;
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    @Column
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private Date termTime;
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    @NotNull
+    @ManyToOne
+    private Furniture furniture;
 
-	public Date getTermTime() {
-		return termTime;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
+    private Employee producer;
 
-	public void setTermTime(Date termTime) {
-		this.termTime = termTime;
-	}
+    @Override
+    public long getId() {
+        return id;
+    }
 
-	public Furniture getFurniture() {
-		return furniture;
-	}
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-	public void setFurniture(Furniture furniture) {
-		this.furniture = furniture;
-	}
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
-	public Employee getProducer() {
-		return producer;
-	}
+    public Date getTermTime() {
+        return termTime;
+    }
 
-	public void setProducer(Employee producer) {
-		this.producer = producer;
-	}
-	
-	
+    public void setTermTime(Date termTime) {
+        this.termTime = termTime;
+    }
+
+    public Furniture getFurniture() {
+        return furniture;
+    }
+
+    public void setFurniture(Furniture furniture) {
+        this.furniture = furniture;
+    }
+
+    public Employee getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Employee producer) {
+        this.producer = producer;
+    }
+
 }

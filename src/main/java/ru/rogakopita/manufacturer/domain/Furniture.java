@@ -15,88 +15,76 @@ import ru.rogakopita.manufacturer.domain.ifc.DTOIfc;
 
 @SuppressWarnings("serial")
 @Entity
-public class Furniture implements DTOIfc,Serializable {
+public class Furniture implements DTOIfc, Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column
-	private String name;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	@OneToOne
-	private Department department;
-	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Type type;
-	
-	@Override
-	public long getId() {
-		return id;
-	}
-	
-	
-	
-	public String getName() {
-		return name;
-	}
+    @Column
+    private String name;
 
+    @OneToOne
+    private Department department;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Override
+    public long getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Department getDepartment() {
-		return department;
-	}
+    public Department getDepartment() {
+        return department;
+    }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
+    public Type getType() {
+        return type;
+    }
 
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
+    public void setType(Type type) {
+        this.type = type;
+    }
 
+    enum Type {
+        SOFT("Мягкая"), CORPS("Корпусная"), OFFICE("Офисная");
 
+        private String name;
 
-	public Type getType() {
-		return type;
-	}
+        private Type(String name) {
+            this.setName(name);
+        }
 
+        public static Type byName(String name) throws Exception {
+            if ("Мягкая".equals(name))
+                return SOFT;
+            if ("Корпусная".equals(name))
+                return CORPS;
+            if ("Офисная".equals(name))
+                return Type.OFFICE;
+            throw new Exception("Type unknown");
+        }
 
+        public String getName() {
+            return name;
+        }
 
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-
-
-	enum Type {
-		SOFT("Мягкая"), CORPS("Корпусная"), OFFICE("Офисная");
-		
-		private String name;
-		
-		private Type(String name) {
-			 this.setName(name);
-		}
-		
-		public static Type byName(String name) throws Exception {
-			if ("Мягкая".equals(name)) return SOFT;
-			if ("Корпусная".equals(name)) return CORPS;
-			if ("Офисная".equals(name)) return Type.OFFICE;
-			throw new Exception("Type unknown");
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-	}
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 }

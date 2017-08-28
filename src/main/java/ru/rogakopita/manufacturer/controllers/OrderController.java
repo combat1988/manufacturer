@@ -28,7 +28,7 @@ public class OrderController extends AbstractCRUDController<Order> {
     @RequestMapping(value = "{id}/timeToTerm", method = RequestMethod.GET)
     public @ResponseBody String timeToTerm(@PathVariable long id) {
         Map<String, Long> dateTimeToTerm = orderService.timeToTerm(id);
-        return "Оталось " + dateTimeToTerm.get("day") + "дней и часов " + dateTimeToTerm.get("hour") + " до окончания заказа ";
+        return "Оталось " + dateTimeToTerm.get("day") + " дней и часов " + dateTimeToTerm.get("hour") + " до окончания заказа ";
     }
 
 }

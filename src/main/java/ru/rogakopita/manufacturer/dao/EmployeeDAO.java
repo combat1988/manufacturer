@@ -7,14 +7,14 @@ import ru.rogakopita.manufacturer.domain.ifc.DTOIfc;
 
 @Component
 public class EmployeeDAO extends AbstractDAO<Employee> {
-	
-	public EmployeeDAO() {
-		setEntityClass(Employee.class);
-	}
 
-	@Override
-	public DTOIfc getByDTO(Employee dto) {
-		return dto;
-	}
+    public EmployeeDAO() {
+        super(Employee.class);
+    }
+
+    @Override
+    public DTOIfc getByDTO(Employee dto) {
+        return dto;
+    }
 
 }
